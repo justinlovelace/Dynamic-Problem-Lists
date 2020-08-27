@@ -1,0 +1,3 @@
+#Data directory paths
+data_dir: '/'
+local_data: '/'

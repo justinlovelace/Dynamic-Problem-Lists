@@ -1,0 +1,48 @@
+{
+    "learning_rate": 1e-3,
+    "weight_decay": 0.00,
+    "batch_size": 32,
+    "grad_acc": 1,
+    "patience": 10,
+    "num_epochs": 100,
+
+    "emb_dim": 300,
+    "train_embed": false,
+    "doc_length" : 8000,
+    
+    "max_seq_length": 128,
+    "max_num_seq": 1000,
+
+    "emb": "w2v",
+    "debug": false,
+
+    "h": 128,
+    "bidir": true,
+
+    "dropout": 0.3,
+    "embed_dropout": 0.2,
+    "attn_dropout": 0,
+    "n_out": 1,
+    "filters": 64,
+    "embedding_dim": 100,
+    "kernels": 3,
+    "heads": 2,
+
+    "scheduler": "none",
+    "warmup_steps": 16000,
+    "max_steps": 25000,
+
+    "model":"lstm_attn",
+    "task":"30_day",
+    "phenotype": "rolled_phecodes",
+    "icd_threshold": 50,
+    "icd_val_threshold": 0.90,
+    "fold": 0,
+    "test_mode": true,
+    "eval_mode": "standard",
+
+    "save_summary_steps": 100,
+
+    "local_data": "/",
+    "save_path": "/"
+}
