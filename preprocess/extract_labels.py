@@ -283,32 +283,4 @@ if __name__ == "__main__":
     datasetPath = join(local_dir, 'df_MASTER_DATA_ALL_LABELS.csv')
     master_notes.to_csv(datasetPath, index=False)
 
-    columns = ['ICUSTAY_ID']
-    for i in range(5):
-        print('READING TRAINING DATA FOR FOLD ' + str(i))
-        df_train = pd.read_csv(join(local_dir, 'fold' + str(i), 'df_train_subjects.csv'))
-        df_train = df_train[columns]
-        print('READING VALIDATION DATA FOR FOLD ' + str(i))
-        df_val = pd.read_csv(join(local_dir, 'fold' + str(i), 'df_val_subjects.csv'))
-        df_val = df_val[columns]
-        print('READING TEST DATA FOR FOLD ' + str(i))
-        df_test = pd.read_csv(join(local_dir, 'fold' + str(i), 'df_test_subjects.csv'))
-        df_test = df_test[columns]
-
-
-        print('Merging train...')
-        df_upd_train = pd.merge(master_notes, df_train, how='inner', on='ICUSTAY_ID')
-        print('Merging val...')
-        df_upd_val = pd.merge(master_notes, df_val, how='inner', on='ICUSTAY_ID')
-        print('Merging test...')
-        df_upd_test = pd.merge(master_notes, df_test, how='inner', on='ICUSTAY_ID')
-
-        datasetPath = join(local_dir, 'fold' + str(i), 'df_train_subjects.csv')
-        df_upd_train.to_csv(datasetPath, index=False)
-
-        datasetPath = join(local_dir, 'fold' + str(i), 'df_val_subjects.csv')
-        df_upd_val.to_csv(datasetPath, index=False)
-
-        datasetPath = join(local_dir, 'fold' + str(i), 'df_test_subjects.csv')
-        df_upd_test.to_csv(datasetPath, index=False)
 

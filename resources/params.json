@@ -10,9 +10,6 @@
     "train_embed": false,
     "doc_length" : 8000,
     
-    "max_seq_length": 128,
-    "max_num_seq": 1000,
-
     "emb": "w2v",
     "debug": false,
 
@@ -29,8 +26,6 @@
     "heads": 2,
 
     "scheduler": "none",
-    "warmup_steps": 16000,
-    "max_steps": 25000,
 
     "model":"lstm_attn",
     "task":"30_day",

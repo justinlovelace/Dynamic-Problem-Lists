@@ -53,34 +53,6 @@ def split_data(config, df_MASTER):
         df_TEST.to_csv(datasetPath, index=False)
         fold += 1
 
-def split_bert(config, df_bert):
-    local_dir = config['local_data']
-    for fold in range(5):
-        print('-----------------' + 'FOLD ' + str(fold) + '-----------------')
-        print('LOADINING SPLITS...')
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_train_subjects.csv')
-        print(datasetPath)
-        train_subjects = pd.read_csv(datasetPath)
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_val_subjects.csv')
-        print(datasetPath)
-        dev_subjects = pd.read_csv(datasetPath)
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_test_subjects.csv')
-        print(datasetPath)
-        test_subjects = pd.read_csv(datasetPath)
-        print('CALCULATING SPLITS...')
-        df_TEST = df_bert[(df_bert.SUBJECT_ID.isin(test_subjects.SUBJECT_ID))]
-        df_DEV = df_bert[(df_bert.SUBJECT_ID.isin(dev_subjects.SUBJECT_ID))]
-        df_TRAIN = df_bert[(df_bert.SUBJECT_ID.isin(train_subjects.SUBJECT_ID))]
-        print('SAVING SPLITS...')
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_train_subjects_bert.csv')
-        print(datasetPath)
-        df_TRAIN.to_csv(datasetPath, index=False)
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_val_subjects_bert.csv')
-        print(datasetPath)
-        df_DEV.to_csv(datasetPath, index=False)
-        datasetPath = join(local_dir, 'fold' + str(fold), 'df_test_subjects_bert.csv')
-        print(datasetPath)
-        df_TEST.to_csv(datasetPath, index=False)
 
 if __name__ == "__main__":
     config = yaml.safe_load(open("../resources/config.yml"))
@@ -90,9 +62,3 @@ if __name__ == "__main__":
     df_notes = pd.read_csv(path_notes)
     # Create cross-val splits
     split_data(config, df_notes)
-
-    # Match cross-val splits for bert
-    path_notes = join(local_dir, 'df_MASTER_DATA_ALL_LABELS_BERT.csv')
-    print("Loading Bert note data...")
-    df_bert = pd.read_csv(path_notes)
-    split_bert(config, df_bert)
